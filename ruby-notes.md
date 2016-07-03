@@ -1,7 +1,8 @@
 ## Ruby Notes
 
-[Basics](#basics) <br>
+[Basics](#basics)
 [Methods](#methods)
+[Conditionals](#conditionals)
 
 ### Basics
 
@@ -21,12 +22,12 @@ puts    # will print with newline
 ```
 #### Arithmetic
 ```ruby
-*         # multiplication
-/         # division
-+         # addition
--         # subtraction
-%         # remainder
-**        # exponent
+2 * 2     # multiplication
+2 / 2     # division
+2 + 2     # addition
+2 - 2     # subtraction
+2 % 2     # remainder
+2 ** 2    # exponent
 x.abs     # absolute value of variable x
 rand      # random number between 0 and 1
 rand(11)  # random number from 1 to 10
@@ -69,14 +70,6 @@ pets = {                    # create new style hash
 }
 pets["Hamlet"] = "cat"      # add to hash
 my_hash = Hash.new("oops")  # create hash with default value
-```
-#### Notes on true / false / nil
-```ruby
-# false and nil are the only two non-true values in ruby
-if "bacon" # if statement will run, because it is true
-
-# if a key doesn't exist in a hash, it will
-# return nil instead of an error
 ```
 ### Methods
 
@@ -132,6 +125,7 @@ elsif condition
 else
   # leftover thing
 end
+
 puts "It's true!" if true   # prettier conditional
 ```
 #### Unless
@@ -139,6 +133,7 @@ puts "It's true!" if true   # prettier conditional
 unless garbage                      # unless
   # do the thing
 end
+
 puts "Not garbage!" unless garbage  # prettier unless
 ```
 #### Case
@@ -155,4 +150,12 @@ when "Chicken Nugs"
 else
   puts "Eew y?"
 end
+```
+#### Notes on true / false / nil
+```ruby
+# false and nil are the only two non-true values in ruby
+if "bacon" # if statement will run, because it is true
+
+# if a key doesn't exist in a hash, it will
+# return nil instead of an error
 ```
