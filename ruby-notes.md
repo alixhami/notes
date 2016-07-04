@@ -1,13 +1,19 @@
 ## Ruby Notes
 
-[Basics](#basics)
-[Methods](#methods)
-[Conditionals](#conditionals)
+[Basics](#basics)  
+[Methods](#methods)  
+[Conditionals](#conditionals)  
 
 ### Basics
 
-#### Variable inside String
+#### Variables
 ```ruby
+cat = "Hamlet"  # variable assignment. so simple!
+
+# conditional assignment
+cat ||= "Luna"  # only assigns if previously unassigned
+
+# string interpolation
 "here's how you add a #{variable} to a string"
 ```
 #### User Input
@@ -40,6 +46,8 @@ rand(11)  # random number from 1 to 10
 <   # less than
 >=  # greater than or equal to
 <=  # less than or equal to
+&&  # and - true if both are true
+||  # or - true if one is true
 ```
 #### Symbols
 ```ruby
@@ -53,8 +61,11 @@ rand(11)  # random number from 1 to 10
 ```
 #### Arrays
 ```ruby
-stuff = []              # create array
+stuff = []    # create array
+
+# appending arrays
 stuff.push("string")    # adds "string" to the end of array
+stuff << "string"   # concatenation operator "the shovel"
 ```
 #### Hash
 ```ruby
@@ -95,7 +106,7 @@ lineWidth = 50              # example line width for below
 "string".ljust(lineWidth)   # aligns string to left in line width
 "string".rjust(lineWidth)   # aligns string to right in line width
 ```
-#### Each
+#### each
 ```ruby
 example_array.each { |i|      # iterates over each item in array
   puts i
@@ -107,7 +118,23 @@ example_hash.each_value { |v| # iterates over each value
   puts v
 }
 ```
-#### Select
+#### times
+```ruby
+20.times { puts "I love repetition!" }
+# Prints string 20 times
+```
+#### upto & downto
+```ruby
+95.upto(100) { |num| print num, " " }
+# Prints 95 96 97 98 99 100
+```
+#### respond_to?
+```ruby
+# check if a method will work
+[1, 2, 3].respond_to?(:push)
+# returns true, because you can push array to an object
+```
+#### select
 ```ruby
 sample = {alix: 100, hilary: 40, hamlet: 120}
 sample.select {|name, points| points > 50}
@@ -116,7 +143,7 @@ winners = sample.select {|name, points| points > 50}
 # creates new hash with results of select method
 ```
 ### Conditionals
-#### If/Then
+#### if statements
 ```ruby
 if condition                # conditional
   # do something!
@@ -127,8 +154,11 @@ else
 end
 
 puts "It's true!" if true   # prettier conditional
+
+# ternary conditional expression
+puts 3 < 4 ? "3 is less than 4!" : "3 is not less than 4."
 ```
-#### Unless
+#### unless
 ```ruby
 unless garbage                      # unless
   # do the thing
@@ -136,7 +166,7 @@ end
 
 puts "Not garbage!" unless garbage  # prettier unless
 ```
-#### Case
+#### case
 ```ruby
 puts "What's your favorite food?"
 food = gets.chomp
