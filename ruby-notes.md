@@ -3,10 +3,20 @@
 [Basics](#basics)  
 [Methods](#methods)  
 [Conditionals](#conditionals)  
+[Classes](#classes)  
 
 ### Basics
 
 #### Variables
+- **Global Variables** are accessible from everywhere
+  + Indicated by $ (e.g., `$total`)
+  + Note that the '$' actually makes the variable global (not just a convention)
+- **Class Variables** are accessible in certain classes
+  + Indicated by @@ (eg., `@@total`)
+  + Only one copy of a class variable shared by all instances of a class
+- **Instance Variables** are accessible in a specific instance of a class
+  + Indicated by @ (e.g., `@total`)
+
 ```ruby
 cat = "Hamlet"  # variable assignment. so simple!
 
@@ -18,13 +28,13 @@ cat ||= "Luna"  # only assigns if previously unassigned
 ```
 #### User Input
 ```ruby
-gets        # this will include a newline after the response
+gets  # this will include a newline after the response
 gets.chomp  # this will not include a newline
 ```
 #### Printing
 ```ruby
-print   # will print without newline
-puts    # will print with newline
+print # will print without newline
+puts  # will print with newline
 ```
 #### Arithmetic
 ```ruby
@@ -57,30 +67,86 @@ rand(11)  # random number from 1 to 10
 # symbols as keys are faster than strings as keys
 "string".to_sym   # converts to symbol
 "string".intern   # converts to symbol
-:symbol.to_s      # converts to string
+:symbol.to_s    # converts to string
 ```
 #### Arrays
 ```ruby
 stuff = []    # create array
 
 # appending arrays
-stuff.push("string")    # adds "string" to the end of array
-stuff << "string"   # concatenation operator "the shovel"
+stuff.push("string")  # adds "string" to the end of array
+stuff << "string" # concatenation operator "the shovel"
 ```
 #### Hash
 ```ruby
-pets = Hash.new             # create hash
-pets = {}                   # create hash
-pets = {                    # create old style hash
+pets = Hash.new     # create hash
+pets = {}           # create hash
+pets = {            # create old style hash
   :Hamlet => "cat",
   :Luna => "cat"
 }
-pets = {                    # create new style hash
+pets = {          # create new style hash
   Hamlet: "cat",
   Luna: "cat"
 }
 pets["Hamlet"] = "cat"      # add to hash
 my_hash = Hash.new("oops")  # create hash with default value
+```
+#### Blocks
+```ruby
+# blocks are a chunk of code to be run
+# indicated by {} or do/end
+# can be combined with methods like each
+[1, 2, 3].each { |num| puts num }
+
+# create methods that accept blocks with yield!
+def example
+	puts "first part"
+	yield
+end
+example { puts "block part" } # puts both strings
+
+# more complicated version
+def example
+	puts "first part"
+	yield("example")
+end
+example { |x| puts "#{x} block part" }
+# returns both, but second one is "example block part"
+```
+#### Procs
+```ruby
+# procs are like blocks you can save!
+# '&' converts proc into a block
+multiples_of_5 = Proc.new do |n|
+  n % 5 == 0
+end
+(1..50).to_a.select(&multiples_of_5) # call with &
+# ==> [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+
+# you can call a proc by itself using call
+hi = Proc.new {puts "Hello!"}
+hi.call
+# ==> Hello!
+
+# convert symbols to procs using &
+strings = ["1", "2", "3"]
+nums = strings.map(&:to_i)
+# ==> [1, 2, 3]
+```
+#### Lambdas
+```ruby
+# differences from proc:
+# 1. lambda will throw an error if you pass it the wrong number of arguments,
+# whereas a proc will ignore unexpected arguments and assign nil to any missing
+# 2. when a lambda returns, it passes control back to the calling method,
+# whereas a proc returns immediately, without going back to the calling method
+
+# similarities to proc
+# use & to covert to block and use call to call
+
+# define lambdas using the following:
+lambda { |param| block }
 ```
 ### Methods
 
@@ -108,15 +174,25 @@ lineWidth = 50              # example line width for below
 ```
 #### each
 ```ruby
-example_array.each { |i|      # iterates over each item in array
+example_array.each { |i|  # iterates over each item in array
   puts i
 }
-example_hash.each_key { |k|   # iterates over each key
+example_hash.each_key { |k| # iterates over each key
   puts k
 }
 example_hash.each_value { |v| # iterates over each value
   puts v
 }
+```
+#### collect & map
+```ruby
+# collect is like each, but it will save returned values
+# note that this is the same as map
+nums.collect { |n| n * 2 } # will make temporary copy * 2
+nums.collect! { |n| n * 2 } # will actually update array
+
+# or use to make a new version of an array
+double_nums = nums.collect { |n| n * 2 }
 ```
 #### times
 ```ruby
@@ -126,7 +202,7 @@ example_hash.each_value { |v| # iterates over each value
 #### upto & downto
 ```ruby
 95.upto(100) { |num| print num, " " }
-# Prints 95 96 97 98 99 100
+# ==> 95 96 97 98 99 100
 ```
 #### respond_to?
 ```ruby
@@ -145,7 +221,7 @@ winners = sample.select {|name, points| points > 50}
 ### Conditionals
 #### if statements
 ```ruby
-if condition                # conditional
+if condition
   # do something!
 elsif condition
   # something else!
@@ -160,7 +236,7 @@ puts 3 < 4 ? "3 is less than 4!" : "3 is not less than 4."
 ```
 #### unless
 ```ruby
-unless garbage                      # unless
+unless garbage
   # do the thing
 end
 
@@ -188,4 +264,19 @@ if "bacon" # if statement will run, because it is true
 
 # if a key doesn't exist in a hash, it will
 # return nil instead of an error
+```
+### Classes
+definition: a class is a way of organizing and producing objects with similar attributes and methods
+conventions: class names start with capital letter and use CamelCase
+#### Create a class!
+```ruby
+class Person
+  # make it werk here!
+  def initialize(name, age)
+    @name = name  # use @ to signify an instance variable
+    @age = age
+  end
+end
+
+me = Person.new("Alix",25)  # create new instance of class
 ```
