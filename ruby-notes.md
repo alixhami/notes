@@ -266,8 +266,9 @@ if "bacon" # if statement will run, because it is true
 # return nil instead of an error
 ```
 ### Classes
-definition: a class is a way of organizing and producing objects with similar attributes and methods
-conventions: class names start with capital letter and use CamelCase
++ **definition**: a class is a way of organizing and producing objects with similar attributes and methods
++ **conventions**: class names start with capital letter and use CamelCase  
+
 #### Create a class!
 ```ruby
 class Person
@@ -279,4 +280,63 @@ class Person
 end
 
 me = Person.new("Alix",25)  # create new instance of class
+
+# Shortcut
+class Person; end # End a Ruby statement without a new line by using a semicolon
+```
+#### Inheritance
++ Note: Ruby disallows multiple inheritance  
+
+```ruby
+class Parent
+  def say_stuff
+    puts "stuff!"
+  end
+end
+
+class Child < Parent
+  # the child class will inherit everything from the parent class
+  # even if you don't put anything in here!
+
+  def say_stuff   # explicitly create the same method again to overwrite
+    puts "other stuff!"
+
+    # use the super keyword to access what's inside the parent's method
+    super() # pass arguments if the parent's methods take arguments
+  end
+end
+```
+#### Class Methods
++ Class Methods belong to the class itself, as opposed to instance methods, which work on a particular instance/object.  
+
+```ruby
+class Tester
+  def Tester.hello
+    puts "Hey, it's me - the tester!"
+  end
+end
+```
+#### Public vs. Private Methods
++ **Public Methods** can be called inside and outside of the object where they are defined  
++ **Private Methods** cannot be called outside of the object where they are defined  
++ You can explicitly define methods as public and private  
++ If you do not specify, methods will default to public  
+
+```ruby
+class Person
+  def initialize(name)
+    @name = name
+  end
+
+  public    # this is the default
+  def introduction
+    puts "Hi I'm #{name}!"
+  end
+
+  private   # this method will not work when called outside the function
+  def credit_card_number
+    @account_number = 253108623
+    puts "Here, have my credit card number! #{@account_number}"
+  end
+end
 ```

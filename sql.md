@@ -1,7 +1,7 @@
 ## SQL
 
 [Concepts](#the-relational-model)  
-[Syntax](#SQL-syntax)  
+[Syntax](#sql-syntax)  
 
 ### The Relational Model  
 *Notes from Stanford Mini Course*  
@@ -32,4 +32,20 @@ Use wildcard to select all
 ```SQL
 SELECT *
 FROM table_name
+```
+AND / OR
+```SQL
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+AND|OR condition
+```
+DELETE
+```SQL
+DELETE FROM table_name
+WHERE some_column=some_value  /* targeted delete */
+
+DELETE FROM table_name  /* deletes the entire table! */
+
+DELETE * FROM table_name  /* deletes the entire table! */
 ```
