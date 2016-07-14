@@ -4,6 +4,7 @@
 [Methods](#methods)  
 [Conditionals](#conditionals)  
 [Classes](#classes)  
+[Modules](#modules)  
 
 ### Basics
 
@@ -25,6 +26,12 @@ cat ||= "Luna"  # only assigns if previously unassigned
 
 # string interpolation
 "here's how you add a #{variable} to a string"
+```
+#### Constants
++ The convention when defining a constant is to use ALL_CAPS with words separated by underscores  
+
+```ruby
+PI = 3.141592653589793
 ```
 #### User Input
 ```ruby
@@ -337,6 +344,40 @@ class Person
   def credit_card_number
     @account_number = 253108623
     puts "Here, have my credit card number! #{@account_number}"
+  end
+end
+```
+### Modules
++ Can't create instances and can't have subclasses  
++ Convention is to name with CapitalizedCamelCase like Classes  
++ One of the main purposes is to separated methods and constants into named spaces (*namespacing*)
+
+```ruby
+module Circle
+  PI = 3.141592653589793
+end
+
+Cirle::PI # tells ruby to look specifically in Circle for PI
+# the :: is called the scope resolution operator
+```
+#### require
+```ruby
+require 'date' # bring in modules using require
+
+puts Date.today
+```
+#### include
+```ruby
+class Angle
+  include Math
+  attr_accessor :radians
+
+  def initialize(radians)
+    @radians = radians
+  end
+
+  def cosine
+    cos(@radians) # can use constants and method without prepending method name
   end
 end
 ```
