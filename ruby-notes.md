@@ -347,6 +347,19 @@ class Person
   end
 end
 ```
+#### attr  
++ Use `attr` to read and write instance variables outside the class  
++ Think of this like using `public` and `private` for methods  
++ Use `attr_reader` to read, `attr_writer` to write, or `attr_accessor` for both  
+
+```ruby
+class Person
+  attr_writer :name
+  def initialize(name)
+    @name = name
+  end
+end
+```
 ### Modules
 + Can't create instances and can't have subclasses  
 + Convention is to name with CapitalizedCamelCase like Classes  
