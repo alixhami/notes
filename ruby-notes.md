@@ -5,6 +5,7 @@
 [Conditionals](#conditionals)  
 [Classes](#classes)  
 [Modules](#modules)  
+[Mixins](#mixins)
 
 ### Basics
 
@@ -26,6 +27,10 @@ cat ||= "Luna"  # only assigns if previously unassigned
 
 # string interpolation
 "here's how you add a #{variable} to a string"
+
+# use underscores for large numeric literals (ruby ignores them)
+balance = 1_000_000
+# => 1000000
 ```
 #### Constants
 + The convention when defining a constant is to use ALL_CAPS with words separated by underscores  
@@ -380,6 +385,7 @@ require 'date' # bring in modules using require
 puts Date.today
 ```
 #### include
++ Use a module's methods at the instance level
 ```ruby
 class Angle
   include Math
@@ -393,4 +399,33 @@ class Angle
     cos(@radians) # can use constants and method without prepending method name
   end
 end
+```
+### Mixins
++ Include modules in class definition to avoid repeating code (DRY!)
++ A way of using multiple inheritance, since ruby doesn't allow it
+```ruby
+module Firsties
+	def methodator
+		puts "This is the first method!"
+	end
+end
+
+module Secondsies
+	def methodontist
+		puts "Woah a second method?"
+	end
+end
+
+class Combinatro
+	include Firsties
+	include Secondsies
+end
+
+example = Combinatro.new
+
+example.methodator
+example.methodontist
+
+# => This is the first method!
+# => Woah a second method?
 ```
