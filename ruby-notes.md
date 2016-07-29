@@ -1,4 +1,5 @@
 ## Ruby Notes
+Notes taken during [CodeCademy](https://www.codecademy.com/learn/ruby) tutorial
 
 [Basics](#basics)  
 [Methods](#methods)  
