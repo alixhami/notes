@@ -1,4 +1,4 @@
-## RSpec Notes
+# RSpec Notes
 Summarized content from: [TutorialsPoint](http://www.tutorialspoint.com/rspec/)
 
 [Basic Example](#basic-illustrated-example)  
@@ -10,7 +10,7 @@ Summarized content from: [TutorialsPoint](http://www.tutorialspoint.com/rspec/)
 [Test Doubles (Mocks)](#test-doubles)  
 [Stubs](#stubs)  
 
-### Basic Illustrated Example
+## Basic Illustrated Example
 
 ```ruby
 describe HelloWorld do
@@ -47,9 +47,9 @@ end
 **eql** : RSpec keyword called a "Matcher"
 + Specifies which type of condition you are testing to be true (or false)
 
-### Additional Keywords
+## Additional Keywords
 
-#### Equality and Identity Matchers
+### Equality and Identity Matchers
 Matcher | Description | Example
 --- | --- | ---
 eq | Passes when actual == expected | expect(actual).to eq expected
@@ -75,7 +75,7 @@ describe "An example of the equality Matchers" do
 end
 ```
 
-#### Comparison Matchers
+### Comparison Matchers
 Matcher	| Description	| Example
 --- | --- | ---
 >	| Passes when actual > expected	| expect(actual).to be > expected
@@ -109,7 +109,7 @@ describe "An example of the comparison Matchers" do
 end
 ```
 
-#### Class and Type Matchers
+### Class and Type Matchers
 Matcher | Description | Example
 --- | --- | ---
 be_instance_of	| Passes when actual is an instance of the expected class.	| expect(actual).to be_instance_of(Expected)
@@ -134,7 +134,7 @@ describe "An example of the type/class Matchers" do
 end
 ```
 
-#### True False Nil Matchers
+### True False Nil Matchers
 Matcher | Description | Example
 --- | --- | ---
 be true	| Passes when actual == true	| expect(actual).to be true
@@ -161,7 +161,7 @@ describe "An example of the true/false/nil Matchers" do
 end
 ```
 
-#### Error Matchers
+### Error Matchers
 Matcher | Description | Example
 --- | --- | ---
 raise_error(ErrorClass)	| Passes when the block raises an error of type ErrorClass.	| expect {block}.to raise_error(ErrorClass)
@@ -180,7 +180,7 @@ describe "An example of the error Matchers" do
 end
 ```
 
-#### Test Doubles
+### Test Doubles
 + RSpec Doubles, also known as RSpec Mocks, are objects that can "stand in" for another object.
 + This can come in handy when you have a class of objects, but you want to isolate just the class for testing.
 + Allows you to test your code even when it relies on a class that is undefined or unavailable.
@@ -211,7 +211,7 @@ describe ClassRoom do
 end
 ```
 
-#### Stubs
+### Stubs
 + Often called a Method Stub
 + Special type of method that "stands in" for an existing method, or a method that doesn't exist yet
 + In the above example, the `allow()` method provides the method stubs that we need to test the ClassRoom class
