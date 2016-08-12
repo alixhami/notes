@@ -369,7 +369,7 @@ end
 ### Modules
 + Can't create instances and can't have subclasses  
 + Convention is to name with CapitalizedCamelCase like Classes  
-+ One of the main purposes is to separated methods and constants into named spaces (*namespacing*)
++ One of the main purposes is to separate methods and constants into named spaces (*namespacing*)
 
 ```ruby
 module Circle
